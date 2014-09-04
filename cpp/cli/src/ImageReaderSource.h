@@ -19,6 +19,10 @@
 
 #include <zxing/LuminanceSource.h>
 
+typedef enum {
+	FORMAT_JPEG,
+	FORMAT_PNG
+} SOURCE_FORMAT;
 class ImageReaderSource : public zxing::LuminanceSource {
 private:
   typedef LuminanceSource Super;
@@ -29,7 +33,7 @@ private:
   char convertPixel(const char* pixel) const;
 
 public:
-  static zxing::Ref<LuminanceSource> create(std::string const& filename);
+  static zxing::Ref<LuminanceSource> create(unsigned char* data, size_t size, SOURCE_FORMAT format);
 
   ImageReaderSource(zxing::ArrayRef<char> image, int width, int height, int comps);
 

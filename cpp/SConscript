@@ -67,7 +67,7 @@ libzxing = env.Library('zxing', source=libzxing_files,
 
 # Add cli.
 zxing_files = all_files('cli/src')
-zxing = env.Program('zxing', zxing_files,
+zxing = env.SharedLibrary('zxingbridge', zxing_files,
   CPPPATH=libzxing_include,
   LIBS=libzxing + libiconv_libs, **compile_options)
 

@@ -69,7 +69,7 @@ vector<Ref<Result> > decode_image(Ref<LuminanceSource> source, bool hybrid, bool
 			binarizer = new GlobalHistogramBinarizer(source);
 		}
 		DecodeHints hints(DecodeHints::DEFAULT_HINT);
-		hints.setTryHarder(harder);
+//		hints.setTryHarder(harder);
 		Ref<BinaryBitmap> binary(new BinaryBitmap(binarizer));
 		results = decode_multi(binary, hints);
 
@@ -81,7 +81,9 @@ vector<Ref<Result> > decode_image(Ref<LuminanceSource> source, bool hybrid, bool
 		cell_result = "zxing::Exception: " + string(e.what());
 	} catch (const std::exception& e) {
 		cell_result = "std::exception: " + string(e.what());
-	}
+	} 
+
+
 
 	return results;
 }

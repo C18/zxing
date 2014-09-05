@@ -81,7 +81,14 @@ test = env.Program('testrunner', test_files,
   CPPPATH=libzxing_include + cppunit_include,
   LIBS=libzxing + cppunit_libs, **compile_options)
 
+header_files = env.FindFile("zxingbridge.h", "cli/src")
+install_headers = env.Install("/usr/local/include", header_files)
+install_libs = env.Install("/usr/local/lib", zxing)
+
 # Setup some aliases.
 Alias('lib', libzxing)
 Alias('zxing', zxing)
 Alias('tests', test)
+Alias('install_headers', install_headers)
+Alias('install_libs', install_libs)
+Alias('install', ['install_libs', 'install_headers'])

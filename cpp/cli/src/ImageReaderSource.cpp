@@ -72,6 +72,10 @@ Ref<LuminanceSource> ImageReaderSource::create(unsigned char* data, size_t size,
   } else if (format == FORMAT_JPEG) {
     char *buffer = reinterpret_cast<char*>(jpgd::decompress_jpeg_image_from_memory(
         data, size, &width, &height, &comps, 4));
+
+	if (buffer == NULL) {
+		throw zxing::IllegalArgumentException("error decode jpeg");
+	}
     image = zxing::ArrayRef<char>(buffer, 4 * width * height);
 	free(buffer);
   }

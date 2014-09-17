@@ -121,7 +121,7 @@ ZXingDecodeResult* zxing_decode(unsigned char *data, size_t size, SOURCE_FORMAT 
 	try {
 		source = ImageReaderSource::create(data, size, format);
 	} catch (const zxing::IllegalArgumentException &e) {
-		cerr << e.what() << " (ignoring)" << endl;
+		return make_zxing_decode_result(0);
 	} 
 	vector<Ref<Result> > results = decode_image(source, false, false);
 
